@@ -3,7 +3,7 @@ Repository dedicated to MVP Project for Data Engineering sprint for PUC-Rio Data
 
 # MVP Data Engineering: Pipeline Airbnb Rio de Janeiro
 
-Este projeto é focado na construção de um pipeline de dados completo (End-to-End) utilizando a plataforma **Databricks**.
+Este projeto é focado na construção de um pipeline de dados completo (End-to-End) utilizando a plataforma **Databricks**. O notebook com todo o passo a passo do MVP está disponível neste ([link](https://github.com/juliafarah/MVP_Data_Engineering/blob/main/MVP_Pipeline_Airbnb_Rio.ipynb).
 
 ---
 
@@ -103,6 +103,8 @@ O processo de ETL foi desenvolvido utilizando **PySpark** no Databricks Communit
 * Verificação de valores nulos em campos críticos como `price` e `ad_id`.
 * Identificação de preços negativos.
 * Garantia de que os dados categóricos (bairros e grupos de bairros) estavam padronizados nas dimensões.
+
+---
 
 ## 6. Solução do Problema (Insights Obtidos)
 
