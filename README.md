@@ -57,14 +57,16 @@ A principal estratégia foi transformar a tabela original `listings` (uma tabela
 * **Camada Silver (Cleaned & Modeled):** Etapa onde ocorre a limpeza e a decomposição lógica dos dados.
     * Separação dos atributos nas 3 Dimensões (Localização, Host, Anúncio).
     * Definição da Tabela Fato com as métricas quantitativas (PK e FK).
-    * Tratamento de tipagem e remoção de dados "sujos".
+    * Tratar o nan convertendo para um nulo real do banco de dados.
+    * Remoçao de dados que corrompem a análise dos dados.
 
-   | **database** | **tableName** | **isTemporary** |
-   | :--- | :--- | :--- |
-   | silver | dim_anuncio | false |
-   | silver | dim_host | false |
-   | silver | dim_localizacao | false |
-   | silver | fact_listings | false |
+
+  | **database** | **tableName** | **isTemporary** |
+  | :--- | :--- | :--- |
+  | silver | dim_anuncio | false |
+  | silver | dim_host | false |
+  | silver | dim_localizacao | false |
+  | silver | fact_listings | false |
   
 * **Camada Gold (Curated):** Tabelas Fato e Dimensões consolidadas e otimizadas para performance em ferramentas de BI e análises exploratória dos dados.
 
