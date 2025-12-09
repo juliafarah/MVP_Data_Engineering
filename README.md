@@ -16,7 +16,7 @@ Ferramentas utilizadas:
 
 ## 1. Objetivo e Definição do Problema
 
-O objetivo é processar dados públicos do Airbnb referentes à cidade do Rio de Janeiro, transformando dados brutos em insights valiosos sobre o mercado de aluguel por temporada através da **Arquitetura Medalhão** aliada à **Modelagem Dimensional**.
+O objetivo é processar dados públicos do Airbnb referentes à cidade do Rio de Janeiro, transformando dados brutos em insights valiosos sobre o mercado de aluguel por temporada através da **Arquitetura Medalhão** aliada à **Modelagem Star Schema**.
 
 **Perguntas a serem respondidas:**
 1. Qual a região do Rio tem a média de preço (ticket médio) mais cara da cidade?
@@ -27,7 +27,7 @@ O objetivo é processar dados públicos do Airbnb referentes à cidade do Rio de
 
 ---
 
-## 2. Busca e Coleta de Dados
+## 2. Coleta de Dados
 
 **Fonte de Dados:**
 Os dados foram extraídos do portal **Inside Airbnb**, uma fonte independente e pública que disponibiliza dados da plataforma Airbnb.
@@ -36,7 +36,10 @@ Os dados foram extraídos do portal **Inside Airbnb**, uma fonte independente e 
 * **Fonte Original:** [Inside Airbnb - Get the Data - Rio de Janeiro, Brasil](http://insideairbnb.com/get-the-data.html) 
 
 **Metodologia de Coleta:**
-A ingestão dos dados foi realizada diretamente do Inside Airbnb, baixando o arquivo bruto (`listings.csv`) e armazenando-o neste repositório e conectando com o Databricks utilizando a linguagem Python (Pandas) na camada inicial do Data Lake.
+
+Diretamente do Inside Airbnb, foi feito o download do arquivo bruto (`listings.csv`). Após isso, conectou-se os dados na camada inicial do Data Lake a partir da leitura dos caminhos dos arquivos no Databricks Volumes. 
+
+O arquivo `neighbourhoods.csv` foi criado a partir dos dados encontrados no site **Estados e Capitais do Brasil** que disponibiliza a [lista dos bairros da cidade do Rio de Janeiro por região](https://www.estadosecapitaisdobrasil.com/lista-dos-bairros-do-rio-de-janeiro/). Ambos arquivos estão disponiveis neste repositório.
 
 ---
 
@@ -49,7 +52,7 @@ O projeto foi construido combinando o fluxo de dados da **Arquitetura Medalhão*
 A principal estratégia foi transformar a tabela original `listings` (uma tabela *flat* com todas as informações misturadas) em um modelo relacional analítico composto por **1 Tabela Fato e 3 Tabelas Dimensão**, como mostra a figura.
 
 
-![star_schema_mvp_de_airbnb](https://github.com/user-attachments/assets/c1d68287-f40a-40bb-af88-de2d028f0947)
+![star_schema_mvp_de_airbnb](https://github.com/user-attachments/assets/85f57b54-4d89-4e04-90ad-173657e870e2)
 
 
 ### B. Arquitetura Medalhão
@@ -65,23 +68,22 @@ A principal estratégia foi transformar a tabela original `listings` (uma tabela
     * Separação dos atributos nas 3 Dimensões (Localização, Host, Anúncio).
     * Definição da Tabela Fato com as métricas quantitativas (PK e FK).
     * Tratar o nan convertendo para um nulo real do banco de dados.
-    * Remoçao de dados que corrompem a análise dos dados.
-
+    * Remoção de dados que corrompem a análise dos dados.
 
   | **database** | **tableName** | **isTemporary** |
   | :--- | :--- | :--- |
-  | silver | dim_anuncio | false |
+  | silver | dim_ad | false |
   | silver | dim_host | false |
-  | silver | dim_localizacao | false |
+  | silver | dim_location | false |
   | silver | fact_listings | false |
   
 * **Camada Gold (Curated):** Tabelas Fato e Dimensões consolidadas e otimizadas para performance em ferramentas de BI e análises exploratória dos dados.
 
   | **database** | **tableName** | **isTemporary** |
   | :--- | :--- | :--- |
-  | gold | dim_anuncio | false |
+  | gold | dim_ad | false |
   | gold | dim_host | false |
-  | gold | dim_localizacao | false |
+  | gold | dim_location | false |
   | gold | fact_listings | false |
 
 
@@ -109,12 +111,55 @@ O processo de ETL foi desenvolvido utilizando **PySpark** no Databricks Communit
 ## 5. Qualidade de Dados
 
 * Verificação de valores nulos em campos críticos como `host_id` e `ad_id`.
-* Identificação de preços negativos.
+* Identificação de nulos, preços negativos, orphan records e etc.
 * Garantia de que os dados categóricos (bairros e regiões) estavam padronizados nas dimensões.
 
 ---
 
-## 6. Solução do Problema (Insights Obtidos)
+## 6. Catálogo de Dados prontos para Analise dos Dados
+
+### `fact_listings`
+
+| Coluna | Tipo | Descrição |
+| :--- | :--- | :--- |
+| ad_id | String | Chave estrangeira para a dimensão anúncio (FK) |
+| host_id | String | Chave estrangeira para a dimensão anfitrião (FK) |
+| id_location | Integer | Chave estrangeira para a dimensão localização (FK) |
+| price | Float | Preço da diária do imóvel |
+| minimum_nights | Integer | Quantidade mínima de noites para reserva |
+| number_of_reviews | Integer | Número total de avaliações recebidas |
+| reviews_per_month | Float | Média de avaliações recebidas por mês |
+| availability_365 | Integer | Dias disponíveis para reserva nos próximos 365 dias |
+| number_of_reviews_ltm | Integer | Número de avaliações nos últimos 12 meses |
+
+### `dim_location`
+
+| Coluna | Tipo | Descrição |
+| :--- | :--- | :--- |
+| id_location | Integer | Identificador único da localização (PK) |
+| neighbourhood | String | Nome do bairro |
+| neighbourhood_group | String | Zona ou região dos bairros da cidade |
+
+### `dim_host`
+
+| Coluna | Tipo | Descrição |
+| :--- | :--- | :--- |
+| host_id | String | Identificador único do anfitrião (PK) |
+| host_name | String | Nome do anfitrião |
+| host_total_listings_count | Integer | Quantidade total de anúncios que este anfitrião possui |
+
+### `dim_ad`
+
+| Coluna | Tipo | Descrição |
+| :--- | :--- | :--- |
+| ad_id | String | Identificador de cada anúncio (FK) |
+| ad_title | String | Título do anúncio |
+| room_type | String | Tipo de acomodação |
+
+
+---
+
+## 7. Solução do Problema (Insights Obtidos)
 
 Com base nos dados processados, as principais conclusões foram: ([análise detalhada no notebook](https://github.com/juliafarah/MVP_Data_Engineering/blob/main/MVP_Pipeline_Airbnb_Rio.ipynb)) 
 
