@@ -56,8 +56,7 @@ A principal estratégia foi transformar a tabela original `listings` (uma tabela
 
 Essa abordagem garante integridade referencial e facilita respostas rápidas para as perguntas de negócio definidas no início do projeto, como mostra a figura abaixo:
 
-<img width="502" height="229" alt="image" src="https://github.com/user-attachments/assets/50297c69-dff8-4253-a79c-ca15ca0bc488" /> | <img width="470" height="264" alt="image" src="https://github.com/user-attachments/assets/9fe8a081-d121-4f26-a22f-cb316510887e" /> | <img width="456" height="251" alt="image" src="https://github.com/user-attachments/assets/9b46e693-5c02-46b4-9946-a43a20a9d210" />
-
+<img width="427" height="786" alt="image" src="https://github.com/user-attachments/assets/d584ec81-68de-470f-ae72-a38f513a60bd" />
 
 ---
 
