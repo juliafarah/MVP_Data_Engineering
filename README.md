@@ -48,15 +48,34 @@ A principal estratégia foi transformar a tabela original `listings` (uma tabela
 ### B. Arquitetura Medalhão
 
 * **Camada Bronze (Raw):** Dados brutos da tabela *flat*, mantendo o histórico imutável.
+
+  | **database** | **tableName** | **isTemporary** |
+  | :--- | :--- | :--- |
+  | bronze | listings | false |
+  | bronze | zonas_bairros | false |
+
 * **Camada Silver (Cleaned & Modeled):** Etapa onde ocorre a limpeza e a decomposição lógica dos dados.
     * Separação dos atributos nas 3 Dimensões (Localização, Host, Anúncio).
     * Definição da Tabela Fato com as métricas quantitativas (PK e FK).
     * Tratamento de tipagem e remoção de dados "sujos".
+
+   | **database** | **tableName** | **isTemporary** |
+   | :--- | :--- | :--- |
+   | silver | dim_anuncio | false |
+   | silver | dim_host | false |
+   | silver | dim_localizacao | false |
+   | silver | fact_listings | false |
+  
 * **Camada Gold (Curated):** Tabelas Fato e Dimensões consolidadas e otimizadas para performance em ferramentas de BI e análises exploratória dos dados.
 
-Essa abordagem garante integridade referencial e facilita respostas rápidas para as perguntas de negócio definidas no início do projeto, como mostra a figura abaixo:
+  | **database** | **tableName** | **isTemporary** |
+  | :--- | :--- | :--- |
+  | gold | dim_anuncio | false |
+  | gold | dim_host | false |
+  | gold | dim_localizacao | false |
+  | gold | fact_listings | false |
 
-<img width="427" height="786" alt="image" src="https://github.com/user-attachments/assets/d584ec81-68de-470f-ae72-a38f513a60bd" />
+Essa abordagem garante integridade referencial e facilita respostas rápidas para as perguntas de negócio definidas no início do projeto.
 
 ---
 
