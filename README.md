@@ -106,7 +106,7 @@ O processo de ETL foi desenvolvido utilizando **PySpark** no Databricks Communit
 
 ## 6. Solução do Problema (Insights Obtidos)
 
-Com base nos dados processados, as seguintes conclusões foram tiradas (conforme [análise detalhada no notebook](https://github.com/juliafarah/MVP_Data_Engineering/blob/main/MVP_Pipeline_Airbnb_Rio.ipynb)) 
+Com base nos dados processados, as principais conclusões foram: ([análise detalhada no notebook](https://github.com/juliafarah/MVP_Data_Engineering/blob/main/MVP_Pipeline_Airbnb_Rio.ipynb)) 
 
 * **Zona Sul:** Mantém sua hegemonia em volume e liquidez ao abraçar o turismo de massa.  Copacabana consolida-se como o líder absoluto em número de anúncios, detendo 10.500 anúncios cadastrados na plataforma. Além disso, a demanda transborda para bairros satélites (ex: Gávea e Vidigal), que oferecem custo-benefício ou experiências autênticas (vista panorâmica) em comparação aos bairros mais caros da orla.
 * **Zona Central:** A região central valida a aposta na revitalização (Reviver Centro e Porto Maravilha) e turismo cultural. Santa Teresa (58%) e Centro (52%) mantêm ocupação competitiva o que a torna uma aposta inteligente tanto para pequenos investidores quanto para empresas especializadas atentos na retomada do turismo cultural e corporativo.
