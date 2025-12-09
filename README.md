@@ -3,7 +3,14 @@ Repository dedicated to MVP Project for Data Engineering sprint for PUC-Rio Data
 
 # MVP Data Engineering: Pipeline Airbnb Rio de Janeiro
 
-Este projeto é focado na construção de um pipeline de dados completo (End-to-End) utilizando a plataforma **Databricks**. O notebook com todo o passo a passo do MVP está disponível neste ([link](https://github.com/juliafarah/MVP_Data_Engineering/blob/main/MVP_Pipeline_Airbnb_Rio.ipynb).
+Este projeto é focado na construção de um pipeline de dados completo (End-to-End) utilizando a plataforma **Databricks**. O notebook com todo o passo a passo do MVP está disponível neste [link](https://github.com/juliafarah/MVP_Data_Engineering/blob/main/MVP_Pipeline_Airbnb_Rio.ipynb).
+
+Ferramentas utilizadas:
+* **Databricks** (Plataforma de Dados)
+* **PySpark** (Processamento Distribuído)
+* **Python** (Linguagem de Programação)
+* **SQL** (Consultas e Análises)
+* **Pandas/Matplotlib** (Visualização Gráfica)
 
 ---
 
@@ -35,7 +42,7 @@ A ingestão dos dados foi realizada diretamente do Inside Airbnb, baixando o arq
 
 ## 3. Modelagem e Arquitetura de Dados
 
-O projeto foi arquitetado combinando o fluxo de dados da **Arquitetura Medalhão** com a estruturação lógica em **Star Schema** desde a concepção.
+O projeto foi construido combinando o fluxo de dados da **Arquitetura Medalhão** com a estruturação lógica em **Star Schema** desde a concepção.
 
 ### A. Star Schema
 
@@ -77,6 +84,7 @@ A principal estratégia foi transformar a tabela original `listings` (uma tabela
   | gold | dim_localizacao | false |
   | gold | fact_listings | false |
 
+
 Essa abordagem garante integridade referencial e facilita respostas rápidas para as perguntas de negócio definidas no início do projeto.
 
 ---
@@ -85,7 +93,7 @@ Essa abordagem garante integridade referencial e facilita respostas rápidas par
 
 O processo de ETL foi desenvolvido utilizando **PySpark** no Databricks Community Edition, orientado à construção do modelo dimensional:
 
-1.  **Extração:** Leitura do arquivo CSV bruto com inferência de schema inicial.
+1.  **Extração (Bronze):** Leitura do arquivo CSV bruto com inferência de schema inicial.
 2.  **Transformação e Modelagem (Silver):**
     * Decomposição da tabela flat original.
     * **Criação das Dimensões:** Seleção e tratamento de atributos descritivos (bairros, dados do host, tipo de propriedade).
@@ -100,9 +108,9 @@ O processo de ETL foi desenvolvido utilizando **PySpark** no Databricks Communit
 
 ## 5. Qualidade de Dados
 
-* Verificação de valores nulos em campos críticos como `price` e `ad_id`.
+* Verificação de valores nulos em campos críticos como `host_id` e `ad_id`.
 * Identificação de preços negativos.
-* Garantia de que os dados categóricos (bairros e grupos de bairros) estavam padronizados nas dimensões.
+* Garantia de que os dados categóricos (bairros e regiões) estavam padronizados nas dimensões.
 
 ---
 
@@ -121,11 +129,3 @@ Com base nos dados processados, as principais conclusões foram: ([análise deta
 
 O pipeline construído atingiu o objetivo de estruturar dados desorganizados em informações estratégicas. A decisão arquitetural de **modelar os dados em Star Schema (Fato + 3 Dimensões)** desde as etapas iniciais de transformação provou-se eficaz, facilitando a análise e garantindo a escalabilidade do modelo. A utilização do PySpark permitiu a manipulação performática dos dados através das camadas Bronze, Silver e Gold.
 
----
-
-## 8. Tecnologias Utilizadas
-* **Databricks** (Plataforma de Dados)
-* **PySpark** (Processamento Distribuído)
-* **Python** (Linguagem de Programação)
-* **SQL** (Consultas e Análises)
-* **Pandas/Matplotlib** (Visualização Gráfica)
