@@ -54,7 +54,10 @@ A principal estratégia foi transformar a tabela original `listings` (uma tabela
     * Tratamento de tipagem e remoção de dados "sujos".
 * **Camada Gold (Curated):** Tabelas Fato e Dimensões consolidadas e otimizadas para performance em ferramentas de BI e análises exploratória dos dados.
 
-Essa abordagem garante integridade referencial e facilita respostas rápidas para as perguntas de negócio definidas no início do projeto.
+Essa abordagem garante integridade referencial e facilita respostas rápidas para as perguntas de negócio definidas no início do projeto, como mostra a figura abaixo:
+
+<img width="502" height="229" alt="image" src="https://github.com/user-attachments/assets/50297c69-dff8-4253-a79c-ca15ca0bc488" /> | <img width="470" height="264" alt="image" src="https://github.com/user-attachments/assets/9fe8a081-d121-4f26-a22f-cb316510887e" /> | <img width="456" height="251" alt="image" src="https://github.com/user-attachments/assets/9b46e693-5c02-46b4-9946-a43a20a9d210" />
+
 
 ---
 
@@ -85,7 +88,7 @@ O processo de ETL foi desenvolvido utilizando **PySpark** no Databricks Communit
 
 Com base nos dados processados, as seguintes conclusões foram tiradas (conforme [análise detalhada no notebook](https://github.com/juliafarah/MVP_Data_Engineering/blob/main/MVP_Pipeline_Airbnb_Rio.ipynb)) 
 
-* **Zona Sul:** Mantém sua hegemonia em volume e liquidez ao abraçar o turismo de massa. Além disso, a demanda transborda para bairros satélites (ex: Gávea e Vidigal), que oferecem custo-benefício ou experiências autênticas (vista panorâmica) em comparação aos bairros mais caros da orla.
+* **Zona Sul:** Mantém sua hegemonia em volume e liquidez ao abraçar o turismo de massa.  Copacabana consolida-se como o líder absoluto em número de anúncios, detendo 10.500 anúncios cadastrados na plataforma. Além disso, a demanda transborda para bairros satélites (ex: Gávea e Vidigal), que oferecem custo-benefício ou experiências autênticas (vista panorâmica) em comparação aos bairros mais caros da orla.
 * **Zona Central:** A região central valida a aposta na revitalização (Reviver Centro e Porto Maravilha) e turismo cultural. Santa Teresa (58%) e Centro (52%) mantêm ocupação competitiva o que a torna uma aposta inteligente tanto para pequenos investidores quanto para empresas especializadas atentos na retomada do turismo cultural e corporativo.
 * **Zona Oeste (Liquidez):** A busca por natureza e exclusividade garante as maiores taxas da cidade. A **Barra da Tijuca** possui o maior portfolio (2.739 anúncios). A taxa de ocupação de 56% indica alta liquidez, logo, é um mercado seguro de giro constante.
 
