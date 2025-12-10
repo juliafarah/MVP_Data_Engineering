@@ -29,17 +29,23 @@ O objetivo é processar dados públicos do Airbnb referentes à cidade do Rio de
 
 ## 2. Coleta de Dados
 
-**Fonte de Dados:**
 Os dados foram extraídos do portal **Inside Airbnb**, uma fonte independente e pública que disponibiliza dados da plataforma Airbnb.
 
-* **Dataset:** listings.csv
-* **Fonte Original:** [Inside Airbnb - Get the Data - Rio de Janeiro, Brasil](http://insideairbnb.com/get-the-data.html) 
+* **Dataset:** `listings.csv`
+* **Fonte** [Inside Airbnb - Get the Data - Rio de Janeiro, Brasil](http://insideairbnb.com/get-the-data.html) 
+
+O CSV com lista dos bairros e regiões da cidade do Rio de Janeiro foi criado a partir dos dados encontrados no site **Estados e Capitais do Brasil**.
+
+* **Dataset:** `neighbourhoods.csv`
+* **Fonte:** [Lista dos bairros da cidade do Rio de Janeiro por região](https://www.estadosecapitaisdobrasil.com/lista-dos-bairros-do-rio-de-janeiro/)
+
+
 
 **Metodologia de Coleta:**
 
 Diretamente do Inside Airbnb, foi feito o download do arquivo bruto (`listings.csv`). Após isso, conectou-se os dados na camada inicial do Data Lake a partir da leitura dos caminhos dos arquivos no Databricks Volumes. 
 
-O arquivo `neighbourhoods.csv` foi criado a partir dos dados encontrados no site **Estados e Capitais do Brasil** que disponibiliza a [lista dos bairros da cidade do Rio de Janeiro por região](https://www.estadosecapitaisdobrasil.com/lista-dos-bairros-do-rio-de-janeiro/). Ambos arquivos estão disponiveis neste repositório.
+Ambos arquivos também estão disponiveis neste repositório.
 
 ---
 
@@ -65,8 +71,8 @@ A principal estratégia foi transformar a tabela original `listings` (uma tabela
   | bronze | zonas_bairros | false |
 
 * **Camada Silver (Cleaned & Modeled):** Etapa onde ocorre a limpeza e a decomposição lógica dos dados.
-    * Separação dos atributos nas 3 Dimensões (Localização, Host, Anúncio).
-    * Definição da Tabela Fato com as métricas quantitativas (PK e FK).
+    * Separação dos atributos nas 3 Dimensões (Location, Host, Ad).
+    * Definição da Tabela Fato com as métricas quantitativas (FK).
     * Tratar o nan convertendo para um nulo real do banco de dados.
     * Remoção de dados que corrompem a análise dos dados.
 
@@ -116,7 +122,7 @@ O processo de ETL foi desenvolvido utilizando **PySpark** no Databricks Communit
 
 ---
 
-## 6. Catálogo de Dados prontos para Analise dos Dados
+## 6. Catálogo de Dados prontos para Análise dos Dados
 
 ### `fact_listings`
 
@@ -161,7 +167,7 @@ O processo de ETL foi desenvolvido utilizando **PySpark** no Databricks Communit
 
 ## 7. Solução do Problema (Insights Obtidos)
 
-Com base nos dados processados, as principais conclusões foram: ([análise detalhada no notebook](https://github.com/juliafarah/MVP_Data_Engineering/blob/main/MVP_Pipeline_Airbnb_Rio.ipynb)) 
+Com base nos dados processados, as perguntas feitas inicialmente foram respondidas e estão disponíveis no [notebook](https://github.com/juliafarah/MVP_Data_Engineering/blob/main/MVP_Pipeline_Airbnb_Rio.ipynb). As principais conclusões foram:  
 
 * **Zona Sul:** Mantém sua hegemonia em volume e liquidez ao abraçar o turismo de massa.  Copacabana consolida-se como o líder absoluto em número de anúncios, detendo 10.500 anúncios cadastrados na plataforma. Além disso, a demanda transborda para bairros satélites (ex: Gávea e Vidigal), que oferecem custo-benefício ou experiências autênticas (vista panorâmica) em comparação aos bairros mais caros da orla.
 * **Zona Central:** A região central valida a aposta na revitalização (Reviver Centro e Porto Maravilha) e turismo cultural. Santa Teresa (58%) e Centro (52%) mantêm ocupação competitiva o que a torna uma aposta inteligente tanto para pequenos investidores quanto para empresas especializadas atentos na retomada do turismo cultural e corporativo.
@@ -170,7 +176,7 @@ Com base nos dados processados, as principais conclusões foram: ([análise deta
 
 ---
 
-## 7. Autoavaliação e Conclusão
+## 8. Autoavaliação e Conclusão
 
-O pipeline construído atingiu o objetivo de estruturar dados desorganizados em informações estratégicas. A decisão arquitetural de **modelar os dados em Star Schema (Fato + 3 Dimensões)** desde as etapas iniciais de transformação provou-se eficaz, facilitando a análise e garantindo a escalabilidade do modelo. A utilização do PySpark permitiu a manipulação performática dos dados através das camadas Bronze, Silver e Gold.
+O pipeline construído atingiu o objetivo de estruturar dados desorganizados em informações estratégicas. A decisão de **modelar os dados em Star Schema (Fato + 3 Dimensões)** desde as etapas iniciais de transformação provou-se eficaz, facilitando a análise e garantindo a escalabilidade do modelo. A utilização do PySpark permitiu a manipulação performática dos dados através das camadas Bronze, Silver e Gold.
 
