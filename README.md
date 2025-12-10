@@ -58,7 +58,7 @@ O projeto foi construido combinando o fluxo de dados da **Arquitetura Medalhão*
 A principal estratégia foi transformar a tabela original `listings` (uma tabela *flat* com todas as informações misturadas) em um modelo relacional analítico composto por **1 Tabela Fato e 3 Tabelas Dimensão**, como mostra a figura.
 
 
-![star_schema_mvp_de_airbnb](https://github.com/user-attachments/assets/85f57b54-4d89-4e04-90ad-173657e870e2)
+<img width="1052" height="830" alt="image" src="https://github.com/user-attachments/assets/45faa9aa-8b28-4af8-8cb0-5ff6c3dae6f8" />
 
 
 ### B. Arquitetura Medalhão
