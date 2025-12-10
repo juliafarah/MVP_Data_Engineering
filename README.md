@@ -158,7 +158,7 @@ O processo de ETL foi desenvolvido utilizando **PySpark** no Databricks Communit
 
 | Coluna | Tipo | Descrição |
 | :--- | :--- | :--- |
-| ad_id | String | Identificador de cada anúncio (FK) |
+| ad_id | String | Identificador de cada anúncio (PK) |
 | ad_title | String | Título do anúncio |
 | room_type | String | Tipo de acomodação |
 
@@ -167,11 +167,17 @@ O processo de ETL foi desenvolvido utilizando **PySpark** no Databricks Communit
 
 ## 7. Solução do Problema (Insights Obtidos)
 
-Com base nos dados processados, as perguntas feitas inicialmente foram respondidas e estão disponíveis no [notebook](https://github.com/juliafarah/MVP_Data_Engineering/blob/main/MVP_Pipeline_Airbnb_Rio.ipynb). As principais conclusões foram:  
+Com base nos dados processados, as perguntas feitas inicialmente foram respondidas e análise completa está disponível no [notebook](https://github.com/juliafarah/MVP_Data_Engineering/blob/main/MVP_Pipeline_Airbnb_Rio.ipynb).
 
-* **Zona Sul:** Mantém sua hegemonia em volume e liquidez ao abraçar o turismo de massa.  Copacabana consolida-se como o líder absoluto em número de anúncios, detendo 10.500 anúncios cadastrados na plataforma. Além disso, a demanda transborda para bairros satélites (ex: Gávea e Vidigal), que oferecem custo-benefício ou experiências autênticas (vista panorâmica) em comparação aos bairros mais caros da orla.
+As principais conclusões foram:  
+
+* **Zona Sul:** Mantém sua hegemonia em volume e liquidez ao abraçar o turismo de massa.  Copacabana consolida-se como o líder absoluto em número de anúncios, detendo 10.500 anúncios cadastrados na plataforma. Além disso, a demanda transborda para bairros satélites (ex: Gávea e Vidigal), que oferecem custo-benefício ou experiências diferenciadas em comparação aos bairros mais caros e tradicionais da orla.
+
+  
 * **Zona Central:** A região central valida a aposta na revitalização (Reviver Centro e Porto Maravilha) e turismo cultural. Santa Teresa (58%) e Centro (52%) mantêm ocupação competitiva o que a torna uma aposta inteligente tanto para pequenos investidores quanto para empresas especializadas atentos na retomada do turismo cultural e corporativo.
-* **Zona Oeste (Liquidez):** A busca por natureza e exclusividade garante as maiores taxas da cidade. A **Barra da Tijuca** possui o maior portfolio (2.739 anúncios). A taxa de ocupação de 56% indica alta liquidez, logo, é um mercado seguro de giro constante.
+
+  
+* **Zona Oeste (Liquidez):** A busca por imóveis maiores e exclusividade garante as maiores taxas da cidade. A **Barra da Tijuca** possui o maior portfolio (2.739 anúncios) da região acompanhada de uma taxa de ocupação de 56%. A alta liquidez da região indica que é um mercado seguro de giro constante.
 
 
 ---
