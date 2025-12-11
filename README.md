@@ -3,7 +3,7 @@ Repository dedicated to MVP Project for Data Engineering sprint for PUC-Rio Data
 
 # MVP Data Engineering: Pipeline Airbnb Rio de Janeiro
 
-Este projeto é focado na construção de um pipeline de dados completo (End-to-End) utilizando a plataforma **Databricks**. O notebook com todo o passo a passo do MVP está disponível neste [link](https://github.com/juliafarah/MVP_Data_Engineering/blob/main/MVP_Pipeline_Airbnb_Rio.ipynb).
+Este projeto é focado na construção de um pipeline de dados completo utilizando a plataforma **Databricks**. O notebook com todo o passo a passo do MVP está disponível neste [link](https://github.com/juliafarah/MVP_Data_Engineering/blob/main/MVP_Pipeline_Airbnb_Rio.ipynb).
 
 Ferramentas utilizadas:
 * **Databricks** (Plataforma de Dados)
@@ -32,13 +32,41 @@ O objetivo é processar dados públicos do Airbnb referentes à cidade do Rio de
 Os dados foram extraídos do portal **Inside Airbnb**, uma fonte independente e pública que disponibiliza dados da plataforma Airbnb.
 
 * **Dataset:** `listings.csv`
-* **Fonte** [Inside Airbnb - Get the Data - Rio de Janeiro, Brasil](http://insideairbnb.com/get-the-data.html) 
+* **Fonte** [Inside Airbnb - Get the Data - Rio de Janeiro, Brasil](http://insideairbnb.com/get-the-data.html)
+* **Descrição dos atributos:**
+  | Coluna | Descrição |
+  | :--- | :--- |
+  | id | Identificador do anúncio. |
+  | name | Título do anúncio. |
+  | host_id | Identificador do host (anfitrião). |
+  | host_name | Nome do host. |
+  | neighbourhood_group | Região em que o bairro está inserido. |
+  | neighbourhood | Nome do bairro. |
+  | latitude | Latitude geográfica. |
+  | longitude | Longitude geográfica. |
+  | room_type | O tipo da acomodação. |
+  | price | O valor da acomodação. |
+  | minimum_nights | Qtd mínimo de noites para reserva. |
+  | number_of_reviews | Quantos reviews (avaliações) a acomodação tem. |
+  | last_review | Data da última review feita. |
+  | reviews_per_month | Qtd de reviews por mês. |
+  | calculated_host_listings_count | Qtd de anúncios que o host (anfitrião) tem na cidade. |
+  | availability_365 | Qtd de dias que a acomodação está disponível nos próximos 365 dias. |
+  | number_of_reviews_ltm | Qtd de reviews que o anúncio tem nos últimos 12 meses. |
+  | license | Número de registro. |
+
+
 
 O CSV com lista dos bairros e regiões da cidade do Rio de Janeiro foi criado a partir dos dados encontrados no site **Estados e Capitais do Brasil**.
 
 * **Dataset:** `neighbourhoods.csv`
 * **Fonte:** [Lista dos bairros da cidade do Rio de Janeiro por região](https://www.estadosecapitaisdobrasil.com/lista-dos-bairros-do-rio-de-janeiro/)
-
+* **Descrição dos atributos:**
+  | Coluna | Descrição |
+  | :--- | :--- |
+  | id_bairros | Identificador do bairro |
+  | bairro | Nome do bairro |
+  | zona | Região da cidade *(central, oeste, sul e norte)* |
 
 
 **Metodologia de Coleta:**
@@ -55,7 +83,9 @@ O projeto foi construido combinando o fluxo de dados da **Arquitetura Medalhão*
 
 ### A. Star Schema
 
-A principal estratégia foi transformar a tabela original `listings` (uma tabela *flat* com todas as informações misturadas) em um modelo relacional analítico composto por **1 Tabela Fato e 3 Tabelas Dimensão**, como mostra a figura.
+A principal estratégia foi transformar a tabela original `listings` (uma tabela *flat* com todas as informações misturadas) em um modelo relacional analítico composto por **1 Tabela Fato e 3 Tabelas Dimensão**. 
+
+Abaixo, o *Entity Relationship Diagram* do Databricks da camada gold mostra a relação entre as tabelas dimensão e tabela fato assim como as Primary e Foreign Keys.
 
 
 <img width="1052" height="830" alt="image" src="https://github.com/user-attachments/assets/45faa9aa-8b28-4af8-8cb0-5ff6c3dae6f8" />
@@ -63,14 +93,14 @@ A principal estratégia foi transformar a tabela original `listings` (uma tabela
 
 ### B. Arquitetura Medalhão
 
-* **Camada Bronze (Raw):** Dados brutos da tabela *flat*, mantendo o histórico imutável.
+* **Camada Bronze:** Dados brutos da tabela *flat*, mantendo o histórico imutável.
 
   | **database** | **tableName** | **isTemporary** |
   | :--- | :--- | :--- |
   | bronze | listings | false |
   | bronze | zonas_bairros | false |
 
-* **Camada Silver (Cleaned & Modeled):** Etapa onde ocorre a limpeza e a decomposição lógica dos dados.
+* **Camada Silver:** Etapa onde ocorre a limpeza e a decomposição lógica dos dados.
     * Separação dos atributos nas 3 Dimensões (Location, Host, Ad).
     * Definição da Tabela Fato com as métricas quantitativas (FK).
     * Tratar o nan convertendo para um nulo real do banco de dados.
@@ -83,7 +113,7 @@ A principal estratégia foi transformar a tabela original `listings` (uma tabela
   | silver | dim_location | false |
   | silver | fact_listings | false |
   
-* **Camada Gold (Curated):** Tabelas Fato e Dimensões consolidadas e otimizadas para performance em ferramentas de BI e análises exploratória dos dados.
+* **Camada Gold:** Tabelas Fato e Dimensões consolidadas e otimizadas para performance em ferramentas de BI e análises exploratória dos dados.
 
   | **database** | **tableName** | **isTemporary** |
   | :--- | :--- | :--- |
@@ -120,9 +150,10 @@ O processo de ETL foi desenvolvido utilizando **PySpark** no Databricks Communit
 * Identificação de nulos, preços negativos, orphan records e etc.
 * Garantia de que os dados categóricos (bairros e regiões) estavam padronizados nas dimensões.
 
+
 ---
 
-## 6. Catálogo de Dados prontos para Análise dos Dados
+## 6. Catálogo de Dados prontos para Análise dos Dados (Camada Gold)
 
 ### `fact_listings`
 
