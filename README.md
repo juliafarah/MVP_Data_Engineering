@@ -202,13 +202,13 @@ Com base nos dados processados, as perguntas feitas inicialmente foram respondid
 
 As principais conclusões foram:  
 
-* **Zona Sul:** Mantém sua hegemonia em volume e liquidez ao abraçar o turismo de massa.  Copacabana consolida-se como o líder absoluto em número de anúncios, detendo 10.500 anúncios cadastrados na plataforma. Além disso, a demanda transborda para bairros satélites (ex: Gávea e Vidigal), que oferecem custo-benefício ou experiências diferenciadas em comparação aos bairros mais caros e tradicionais da orla.
+* **Zona Sul:** Mantém sua hegemonia em volume e liquidez ao abraçar o turismo de massa.  Copacabana consolida-se como o líder absoluto em número de anúncios, detendo 10.500 anúncios cadastrados na plataforma. Além disso, a demanda transborda para bairros satélites como Gávea, Lagoa e Vidigal, que oferecem custo-benefício ou experiências diferenciadas em comparação aos bairros mais caros e tradicionais da orla.
 
   
-* **Zona Central:** A região central valida a aposta na revitalização (Reviver Centro e Porto Maravilha) e turismo cultural. Santa Teresa (58%) e Centro (52%) mantêm ocupação competitiva o que a torna uma aposta inteligente tanto para pequenos investidores quanto para empresas especializadas atentos na retomada do turismo cultural e corporativo.
+* **Zona Central:** A região central valida a aposta na revitalização (Reviver Centro e Porto Maravilha) e no turismo cultural. Santa Teresa (58%) e Centro (52%) mantêm ocupação competitiva o que a torna uma aposta inteligente tanto para pequenos investidores quanto para empresas especializadas atentos na retomada do turismo cultural e corporativo.
 
   
-* **Zona Oeste (Liquidez):** A busca por imóveis maiores e exclusividade garante as maiores taxas da cidade. A **Barra da Tijuca** possui o maior portfolio (2.739 anúncios) da região acompanhada de uma taxa de ocupação de 56%. A alta liquidez da região indica que é um mercado seguro de giro constante.
+* **Zona Oeste:** A busca por imóveis maiores e mais modernos garante as maiores taxas da cidade. A **Barra da Tijuca** possui o maior portfolio (2.739 anúncios) da região acompanhada de uma taxa de ocupação de 56%. A alta liquidez da região indica que é um mercado seguro de giro constante.
 
 
 ---
