@@ -3,7 +3,7 @@ Repository dedicated to MVP Project for Data Engineering sprint for PUC-Rio Data
 
 # MVP Data Engineering: Pipeline Airbnb Rio de Janeiro
 
-Este projeto é focado na construção de um pipeline de dados completo utilizando a plataforma **Databricks**. O notebook com todo o passo a passo do MVP está disponível neste [link](https://github.com/juliafarah/MVP_Data_Engineering/blob/main/MVP_Pipeline_Airbnb_Rio.ipynb).
+Este projeto é focado na construção de um pipeline de dados completo utilizando a plataforma **Databricks**. O notebook com todo o passo a passo do MVP está disponível neste repositório e pode ser acessado através deste [link](https://github.com/juliafarah/MVP_Data_Engineering/blob/main/MVP_Pipeline_Airbnb_Rio.ipynb).
 
 Ferramentas utilizadas:
 * **Databricks** (Plataforma de Dados)
@@ -71,7 +71,7 @@ O CSV com lista dos bairros e regiões da cidade do Rio de Janeiro foi criado a 
 
 **Metodologia de Coleta:**
 
-Diretamente do Inside Airbnb, foi feito o download do arquivo bruto (`listings.csv`). Após isso, conectou-se os dados na camada inicial do Data Lake a partir da leitura dos caminhos dos arquivos no Databricks Volumes. 
+Diretamente do Inside Airbnb, foi feito o download do arquivo bruto (`listings.csv`). Após isso, conectou-se os dados na camada inicial do Data Lake a partir da leitura dos caminhos dos arquivos no Databricks Volumes. Já o arquivo com lista de bairros e suas respectivas zonas foi retirado do site **Estados e Capitais do Brasil** e copiado no arquivo CSV. 
 
 Ambos arquivos também estão disponiveis neste repositório.
 
@@ -79,7 +79,7 @@ Ambos arquivos também estão disponiveis neste repositório.
 
 ## 3. Modelagem e Arquitetura de Dados
 
-O projeto foi construido combinando o fluxo de dados da **Arquitetura Medalhão** com a estruturação lógica em **Star Schema** desde a concepção.
+O projeto foi construido combinando o fluxo de dados da **Arquitetura Medalhão** com a estruturação lógica em **Star Schema** desde o princípio.
 
 ### A. Star Schema
 
@@ -93,18 +93,19 @@ Abaixo, o *Entity Relationship Diagram* do Databricks da camada gold mostra a re
 
 ### B. Arquitetura Medalhão
 
-* **Camada Bronze:** Dados brutos da tabela *flat*, mantendo o histórico imutável.
+* **Camada Bronze:** Dados brutos da tabela *flat*, mantendo os dados originais inalterados.
 
   | **database** | **tableName** | **isTemporary** |
   | :--- | :--- | :--- |
   | bronze | listings | false |
   | bronze | zonas_bairros | false |
 
-* **Camada Silver:** Etapa onde ocorre a limpeza e a decomposição lógica dos dados.
+* **Camada Silver:** Etapa onde ocorre a limpeza e a partição da tabela *flat*.
     * Separação dos atributos nas 3 Dimensões (Location, Host, Ad).
     * Definição da Tabela Fato com as métricas quantitativas (FK).
     * Tratar o nan convertendo para um nulo real do banco de dados.
     * Remoção de dados que corrompem a análise dos dados.
+
 
   | **database** | **tableName** | **isTemporary** |
   | :--- | :--- | :--- |
@@ -129,7 +130,7 @@ Essa abordagem garante integridade referencial e facilita respostas rápidas par
 
 ## 4. Pipeline de Carga e Transformação (ETL)
 
-O processo de ETL foi desenvolvido utilizando **PySpark** no Databricks Community Edition, orientado à construção do modelo dimensional:
+O processo de ETL foi desenvolvido utilizando **PySpark** no Databricks Community/Free Edition, orientado à construção do modelo dimensional:
 
 1.  **Extração (Bronze):** Leitura do arquivo CSV bruto com inferência de schema inicial.
 2.  **Transformação e Modelagem (Silver):**
@@ -208,12 +209,12 @@ As principais conclusões foram:
 * **Zona Central:** A região central valida a aposta na revitalização (Reviver Centro e Porto Maravilha) e no turismo cultural. Santa Teresa (58%) e Centro (52%) mantêm ocupação competitiva o que a torna uma aposta inteligente tanto para pequenos investidores quanto para empresas especializadas atentos na retomada do turismo cultural e corporativo.
 
   
-* **Zona Oeste:** A busca por imóveis maiores e mais modernos garante as maiores taxas da cidade. A **Barra da Tijuca** possui o maior portfolio (2.739 anúncios) da região acompanhada de uma taxa de ocupação de 56%. A alta liquidez da região indica que é um mercado seguro de giro constante.
+* **Zona Oeste:** A busca por imóveis mais modernos e praias mais tranquilas garante as maiores taxas da cidade. A **Barra da Tijuca** possui o maior portfólio (2.739 anúncios) da região acompanhada de uma taxa de ocupação de 56%. A alta liquidez da região indica que é um mercado seguro de giro constante.
 
 
 ---
 
 ## 8. Autoavaliação e Conclusão
 
-O pipeline construído atingiu o objetivo de estruturar dados desorganizados em informações estratégicas. A decisão de **modelar os dados em Star Schema (Fato + 3 Dimensões)** desde as etapas iniciais de transformação provou-se eficaz, facilitando a análise e garantindo a escalabilidade do modelo. A utilização do PySpark permitiu a manipulação performática dos dados através das camadas Bronze, Silver e Gold.
+O pipeline construído atingiu o objetivo de estruturar dados desorganizados em informações estratégicas. A decisão de **modelar os dados em Star Schema (Fato + 3 Dimensões)** desde as etapas iniciais de transformação provou-se eficaz, facilitando a análise e garantindo a escalabilidade do modelo. A utilização do PySpark permitiu a manipulação dos dados através das camadas Bronze, Silver e Gold.
 
