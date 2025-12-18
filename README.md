@@ -71,7 +71,7 @@ O CSV com lista dos bairros e regiões da cidade do Rio de Janeiro foi criado a 
 
 **Metodologia de Coleta:**
 
-Diretamente do Inside Airbnb, foi feito o download do arquivo bruto (`listings.csv`). Após isso, conectou-se os dados na camada inicial do Data Lake a partir da leitura dos caminhos dos arquivos no Databricks Volumes. Já o arquivo com lista de bairros e suas respectivas zonas foi retirado do site **Estados e Capitais do Brasil** e copiado no arquivo CSV. 
+Após isso, conectou-se os dois datasets na camada inicial do Data Lake a partir da leitura dos caminhos dos arquivos no Databricks Volumes. 
 
 Ambos arquivos também estão disponiveis neste repositório.
 
