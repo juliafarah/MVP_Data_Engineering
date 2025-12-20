@@ -105,6 +105,7 @@ Abaixo, o *Entity Relationship Diagram* do Databricks da camada gold mostra a re
     * Definição da Tabela Fato com as métricas quantitativas (FK).
     * Tratar o nan convertendo para um nulo real do banco de dados.
     * Remoção de dados que corrompem a análise dos dados.
+    * Certificação de que as FKs sejam valores não nulos.
 
 
   | **database** | **tableName** | **isTemporary** |
