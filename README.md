@@ -148,8 +148,8 @@ O processo de ETL foi desenvolvido utilizando **PySpark** no Databricks Communit
 
 ## 5. Qualidade de Dados
 
-* Verificação de valores nulos em campos críticos como `host_id` e `ad_id`.
-* Identificação de nulos, preços negativos, orphan records e etc.
+* Verificação de valores nulos em campos críticos como `host_id`, `id_location` e `ad_id`.
+* Identificação de nulos, preços negativos, *orphan records* e etc.
 * Garantia de que os dados categóricos (bairros e regiões) estavam padronizados nas dimensões.
 
 
