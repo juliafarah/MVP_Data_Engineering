@@ -219,3 +219,14 @@ As principais conclusões foram:
 
 O pipeline construído atingiu o objetivo de estruturar dados desorganizados em informações estratégicas. A decisão de **modelar os dados em Star Schema (Fato + 3 Dimensões)** desde as etapas iniciais de transformação provou-se eficaz, facilitando a análise e garantindo a escalabilidade do modelo. A utilização do PySpark permitiu a manipulação dos dados através das camadas Bronze, Silver e Gold.
 
+---
+
+## 9. Avaliação e Feedback Técnico
+
+Este projeto foi avaliado pelo professor [Victor Almeida](https://www.linkedin.com/in/invalmeida) da sprint de Engenharia de Dados da Pós-graduação em Data Science and Analytics da PUC-Rio e obteve a **nota máxima (10/10)**.
+
+> **Feedback do professor:** "Excelente trabalho, parabéns!"
+
+<p align="left">
+  <img src="https://github.com/user-attachments/assets/e8d7783e-3e87-45c1-9c0e-c2308c59a3b3" width="600" alt="Feedback do Professor - Nota 10">
+</p>
